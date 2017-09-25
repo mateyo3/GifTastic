@@ -57,7 +57,7 @@ function displayTopic() {
 				console.log("This displays- Rating: " + rating)
 
 			// Retrieving the URL for gif
-			var gifURL = results[i].embed_url;
+			var gifURL = results[i].url;
 				console.log("gifURL: " + gifURL);
 
 			// Create img tag to gif
@@ -72,8 +72,8 @@ function displayTopic() {
 
 
 			// append rating to topicDiv
-			topicDiv.append(ratingDisplay);
 			topicDiv.append(gif);
+			topicDiv.append(ratingDisplay);
 
 			// Putting the entire movie above the previous movies
 			$("#topics-view").prepend(topicDiv);
