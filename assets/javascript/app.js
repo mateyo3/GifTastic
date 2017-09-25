@@ -42,46 +42,46 @@ function displayTopic() {
 	var results = response.data;
 		console.log("results variable: " + results);
 
-	for (var i = 0; i < results.length; i++) {
-		console.log(results.length);
-	
+		// loop for all 10 objects in data array
+		for (var i = 0; i < results.length; i++) {
+		
+			// Creating a div to hold topic
+			var topicDiv = $("<div class='topic-gif'>");
 
-		// Creating a div to hold topic
-		var topicDiv = $("<div class='topic'>");
+			// varibale to hold rating
+			var rating = results[i].rating;
+				console.log("The rating is " + rating)
 
-		// varibale to hold rating
-		var rating = results[i].rating;
-			console.log("The rating is " + rating)
+			// create element for rating
+			var ratingDisplay = $("<p>").text("Rating: " + rating);
+				console.log("This displays- Rating: " + rating)
 
-		// create element for rating
-		var ratingDisplay = $("<p>").text("Rating: " + rating);
-			console.log("This displays- Rating: " + rating)
+			// Retrieving the URL for gif
+			var gifURL = results[i].embed_url;
+				console.log("gifURL: " + gifURL);
 
-		// Retrieving the URL for gif
-		var gifURL = results[i].embed_url;
-			console.log("gifURL: " + gifURL);
+			// Create img tag to gif
+			var gif = $("<img>")
 
-		// Create img tag to gif
-		var gif = $("<img>")
+			gif.attr("src", gifURL).attr("alt", "gif-image").attr("class", "gif");
 
-		gif.attr("src", gifURL).attr("alt", "gif-image").attr("class", "gif");
-
-		//add attributes for still and animate
-		gif.attr("data-still", response.data[i].images.original_still.url);
-		gif.attr("data-animate", response.data[i].images.original.url);
-		gif.attr("data-state", "still");
+			//add attributes for still and animate
+			gif.attr("data-still", response.data[i].images.original_still.url);
+			gif.attr("data-animate", response.data[i].images.original.url);
+			gif.attr("data-state", "still");
 
 
-		// append rating to topicDiv
-		topicDiv.append(ratingDisplay);
-		topicDiv.append(gif);
+			// append rating to topicDiv
+			topicDiv.append(ratingDisplay);
+			topicDiv.append(gif);
 
-		// Putting the entire movie above the previous movies
-		$("#topics-view").prepend(topicDiv);
-	}
-	});
+			// Putting the entire movie above the previous movies
+			$("#topics-view").prepend(topicDiv);
+		} // end of for loop results.length
 
-}
+	}); // end of .done(function(response)
+
+} // end of function displayTopic()
 
 
 
@@ -105,8 +105,10 @@ function renderButtons() {
 
 	// Display button
 	$("#buttons-view").append(b);
-	}
-}
+
+	} // end of for loop for topics.length
+
+} // end of function renderButtons()
 
 
 
@@ -123,7 +125,7 @@ function renderButtons() {
 		//run renderButtons function
 		renderButtons();
 	
-	});
+	}); // end of onclick function for #submit-button
 
 // Toggle gif state
 	$(".gif").on("click", function() {
@@ -137,8 +139,9 @@ function renderButtons() {
 		} else {
 			$(this).attr("src", $(this).attr("data-still"));
 			$(this).attr("data-state", "still");
-		}
-	});
+		} // end of if/else statement to change gif state
+
+	});// end of onclick function for .gif
 
 
 
