@@ -50,7 +50,12 @@ function displayTopic() {
 	// Create img tag to gif
 	var gif = $("<img>")
 
-	gif.attr("src", gifURL).attr("alt", "gif");
+	gif.attr("src", gifURL).attr("alt", "gif image").attr("class", "gif");
+
+	//add attributes for still and animate
+	gif.attr("data-still", response.data[0].images.original_still.url);
+	gif.attr("data-animate", response.data[0].images.original.url);
+	gif.attr("data-state", "still");
 
 
 	// append rating to topicDiv
