@@ -2,6 +2,11 @@
 
 ## Live link
 
+
+## API Key
+Giphy API Key: YqIBM8iSh5pujE7e2dMi4PdehpDSX7Va
+
+
 ## Cloning
 Click the Clone or download button to copy the URL
 

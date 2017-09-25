@@ -7,12 +7,23 @@ var topics = [
 	"Larry Bird",
 ];
 
+var apiKey = "YqIBM8iSh5pujE7e2dMi4PdehpDSX7Va";
+	console.log("APIkey: " + apiKey);
+
+	//javascript, jQuery
+	// var test = $.get("http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=YOUR_API_KEY&limit=5");
+	
+	// test.done(function(data) { 
+	// 	console.log("Is this even working: ", data); 
+	// });
 
 function displayTopic() {
 
 	var topicInfo = $(this).attr("data-name");
-	var queryURL = "https://www.omdbapi.com/?t=" 
-	+ topicInfo + "&y=&plot=short&apikey=40e9cece";
+		console.log("var topicInfo: " + topicInfo);
+
+	var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + topicInfo + "&api_key=" + apiKey + "&limit=10&offset=0&rating=PG&lang=en";
+		console.log("queryURL: " + queryURL);
 
 	// AJAX call for button clicked
 	$.ajax({
@@ -25,10 +36,12 @@ function displayTopic() {
 	var topicDiv = $("<div class='topic'>");
 
 	// varibale to hold rating
-	var rating = response.Rated;
+	var rating = response.data[0].rating;
+		console.log("The rating is " + rating)
 
 	// create element for rating
 	var ratingDisplay = $("<p>").text("Rating: " + rating);
+		console.log("This displays- Rating: " + rating)
 
 	// append rating to topicDiv
 	topicDiv.append(ratingDisplay);
@@ -106,7 +119,7 @@ function renderButtons() {
 	
 	});
 
-
+$(document).on("click", ".topic", displayTopic);
 
 // Run button function
 renderButtons();
