@@ -27,7 +27,7 @@ function displayTopic() {
 	var topicEncoder = encodeURIComponent(topicInfo);
 		console.log("topicEncoder: " + topicEncoder);
 
-	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topicEncoder + "&api_key=" + apiKey + "&limit=10";
+	var queryURL = "https://api.giphy.com/v1/gifs/search?q=nba%20" + topicEncoder + "&api_key=" + apiKey + "&limit=10&offset=0&rating=G&lang=en";
 		console.log("queryURL: " + queryURL);
 
 	// AJAX call for button clicked
