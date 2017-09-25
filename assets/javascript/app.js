@@ -57,7 +57,7 @@ function displayTopic() {
 				console.log("This displays- Rating: " + rating)
 
 			// Retrieving the URL for gif
-			var gifURL = results[i].url;
+			var gifURL = results[i].images.original.url;
 				console.log("gifURL: " + gifURL);
 
 			// Create img tag to gif
@@ -66,8 +66,8 @@ function displayTopic() {
 			gif.attr("src", gifURL).attr("alt", "gif-image").attr("class", "gif");
 
 			//add attributes for still and animate
-			gif.attr("data-still", response.data[i].images.original_still.url);
-			gif.attr("data-animate", response.data[i].images.original.url);
+			gif.attr("data-still", results[i].images.original_still.url);
+			gif.attr("data-animate", results[i].images.original.url);
 			gif.attr("data-state", "still");
 
 
