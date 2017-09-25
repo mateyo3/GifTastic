@@ -4,49 +4,60 @@
 <head>
 	<meta charset="UTF-8">
 	
-	<title>
-		GifTastic
-	</title>
+	<title>GifTastic</title>
 
 
-	<!--Google API -->
-	<link href="https://fonts.googleapis.com/css?family=Font-Name" rel="stylesheet">
-
-	<!-- Bootstrap CDN -->
-	<link rel="stylesheet" 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
-
-	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css" />
-
-	<!-- Favicon -->
-	<link rel="shortcut icon" href="assets/images/favicon_icon.ico" />
-
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<!-- jQuery CDN -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	
+	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 
 
-	<!-- Font Awesome Bootstrap CDN -->
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
-
-
-	<!--JS CDN -->
-	<script type="text/javascript" src="assets/javascript/app.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+  	
+  	<script type="text/javascript" src="assets/javascript/app.js"></script>
 
 
 </head>
 <body>
 	<div class = "container-fluid">
+			
+		<!-- Header -->
+		<header>
+			<h1 class="text-danger">GifTastic</h1>
+		</header>
+
+		<br>
+
+		<form id="search-form">
+
+			<!-- Name of search field -->
+			<label for="user-search-input">Search for a topic</label>
+			
+			<!-- search input field -->
+			<input type="text" name="search-input" id="user-search-input">
+			
+			<br>
+			<!-- Submit button -->
+			<input type="submit" value="Submit" id="submit-button" class="btn btn-primary">
+		</form>
+
+
+		<br>
 		
+		<div id="buttons-view">Display buttons here</div>
 
-<h1 class="text-center">GifTastic</h1>
-
-
-
+		<br>
 
 
+
+
+		<div id="topics-view">Display Topics here</div>
+
+	</div>
 	<!-- class = "container-fluid" -->
 </body>
 
