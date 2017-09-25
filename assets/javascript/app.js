@@ -19,52 +19,66 @@ var apiKey = "YqIBM8iSh5pujE7e2dMi4PdehpDSX7Va";
 
 function displayTopic() {
 
+
 	var topicInfo = $(this).attr("data-name");
 		console.log("var topicInfo: " + topicInfo);
 
-	var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + topicInfo + "&api_key=" + apiKey + "&limit=10&offset=0&rating=PG&lang=en";
+	// adds a "%20" between spaces
+	var topicEncoder = encodeURIComponent(topicInfo);
+		console.log("topicEncoder: " + topicEncoder);
+
+	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topicEncoder + "&api_key=" + apiKey + "&limit=10";
 		console.log("queryURL: " + queryURL);
 
 	// AJAX call for button clicked
 	$.ajax({
 		url: queryURL,
 		method: "GET"
-	}).done(function(response) {
+	})
+
+	.done(function(response) {
 		console.log(response);
 
-	// Creating a div to hold topic
-	var topicDiv = $("<div class='topic'>");
+	var results = response.data;
+		console.log("results variable: " + results);
 
-	// varibale to hold rating
-	var rating = response.data[0].rating;
-		console.log("The rating is " + rating)
+	for (var i = 0; i < results.length; i++) {
+		console.log(results.length);
+	
 
-	// create element for rating
-	var ratingDisplay = $("<p>").text("Rating: " + rating);
-		console.log("This displays- Rating: " + rating)
+		// Creating a div to hold topic
+		var topicDiv = $("<div class='topic'>");
 
-	// Retrieving the URL for gif
-	var gifURL = response.data[0].embed_url;
-		console.log("gifURL: " + gifURL);
+		// varibale to hold rating
+		var rating = results[i].rating;
+			console.log("The rating is " + rating)
 
-	// Create img tag to gif
-	var gif = $("<img>")
+		// create element for rating
+		var ratingDisplay = $("<p>").text("Rating: " + rating);
+			console.log("This displays- Rating: " + rating)
 
-	gif.attr("src", gifURL).attr("alt", "gif image").attr("class", "gif");
+		// Retrieving the URL for gif
+		var gifURL = results[i].embed_url;
+			console.log("gifURL: " + gifURL);
 
-	//add attributes for still and animate
-	gif.attr("data-still", response.data[0].images.original_still.url);
-	gif.attr("data-animate", response.data[0].images.original.url);
-	gif.attr("data-state", "still");
+		// Create img tag to gif
+		var gif = $("<img>")
+
+		gif.attr("src", gifURL).attr("alt", "gif-image").attr("class", "gif");
+
+		//add attributes for still and animate
+		gif.attr("data-still", response.data[i].images.original_still.url);
+		gif.attr("data-animate", response.data[i].images.original.url);
+		gif.attr("data-state", "still");
 
 
-	// append rating to topicDiv
-	topicDiv.append(ratingDisplay);
-	topicDiv.append(gif);
+		// append rating to topicDiv
+		topicDiv.append(ratingDisplay);
+		topicDiv.append(gif);
 
-	// Putting the entire movie above the previous movies
-	$("#topics-view").prepend(topicDiv);
-
+		// Putting the entire movie above the previous movies
+		$("#topics-view").prepend(topicDiv);
+	}
 	});
 
 }
@@ -81,10 +95,13 @@ function renderButtons() {
 	for (var i = 0; i < topics.length; i++) {
 
 	// create button tag
-	var b = $("<button>");
+	var b = $("<button>" + topics[i] + "</button>");
+
+
+	// var arrayObjectEncoder = encodeURIComponent(topics[i]);
 
 	// Adding a class, addattribute, add text to button
-	b.addClass("topic").attr("data-name", topics[i]).text(topics[i]);
+	b.addClass("topic").attr("data-name", topics[i]);
 
 	// Display button
 	$("#buttons-view").append(b);
@@ -113,7 +130,7 @@ function renderButtons() {
 
 		var state = $(this).attr("data-state");
 			console.log("current state: " + state);
-			
+
 		if (state === "still") {
 			$(this).attr("src", $(this).attr("data-animate"));
 			$(this).attr("data-state", "animate");
@@ -122,6 +139,8 @@ function renderButtons() {
 			$(this).attr("data-state", "still");
 		}
 	});
+
+
 
 $(document).on("click", ".topic", displayTopic);
 
