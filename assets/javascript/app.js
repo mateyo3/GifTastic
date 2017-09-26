@@ -2,7 +2,7 @@ $(document).ready(function(){
 
 var topics = [
 	"Micheal Jordan",
-	"Charles Barkley",
+	"Jay-Z",
 	"Magic Johnson",
 	"Barack Obama",
 ];
