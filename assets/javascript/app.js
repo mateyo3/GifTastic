@@ -4,7 +4,7 @@ var topics = [
 	"Micheal Jordan",
 	"Charles Barkley",
 	"Magic Johnson",
-	"Larry Bird",
+	"Barack Obama",
 ];
 
 var apiKey = "YqIBM8iSh5pujE7e2dMi4PdehpDSX7Va";
@@ -57,7 +57,7 @@ function displayTopic() {
 				console.log("This displays- Rating: " + rating)
 
 			// Retrieving the URL for gif
-			var gifURL = results[i].images.original.url;
+			var gifURL = results[i].images.original_still.url;
 				console.log("gifURL: " + gifURL);
 
 			// Create img tag to gif
@@ -77,6 +77,23 @@ function displayTopic() {
 
 			// Putting the entire movie above the previous movies
 			$("#topics-view").prepend(topicDiv);
+
+		// Toggle gif state
+			$(".gif").on("click", function() {
+
+				var state = $(this).attr("data-state");
+					console.log("current state: " + state);
+
+				if (state === "still") {
+					$(this).attr("src", $(this).attr("data-animate"));
+					$(this).attr("data-state", "animate");
+				} else {
+					$(this).attr("src", $(this).attr("data-still"));
+					$(this).attr("data-state", "still");
+				} // end of if/else statement to change gif state
+
+			});// end of onclick function for .gif
+
 		} // end of for loop results.length
 
 	}); // end of .done(function(response)
@@ -127,21 +144,7 @@ function renderButtons() {
 	
 	}); // end of onclick function for #submit-button
 
-// Toggle gif state
-	$(".gif").on("click", function() {
 
-		var state = $(this).attr("data-state");
-			console.log("current state: " + state);
-
-		if (state === "still") {
-			$(this).attr("src", $(this).attr("data-animate"));
-			$(this).attr("data-state", "animate");
-		} else {
-			$(this).attr("src", $(this).attr("data-still"));
-			$(this).attr("data-state", "still");
-		} // end of if/else statement to change gif state
-
-	});// end of onclick function for .gif
 
 
 
