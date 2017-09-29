@@ -4,7 +4,7 @@
 https://mateyo3.github.io/GifTastic
 
 ## API Key
-Giphy API Key: YqIBM8iSh5pujE7e2dMi4PdehpDSX7Va
+Powered by GIPHY
 
 
 ## Cloning
